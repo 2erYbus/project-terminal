@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #c4f20d;
+  --color-background-light: #ffffff;
+  --color-background-dark: #1e2210;
+  --color-surface: #F4F4F4;
+  --color-muted: #888888;
+
+  --font-display: var(--font-unbounded);
+  --font-heading: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --animate-slide-up: slideUp 0.8s cubic-bezier(0.7, 0, 0.3, 1) forwards 0.5s;
+  --animate-marquee: marquee 20s linear infinite;
+  --animate-blink: blink 1s step-end infinite;
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes blink {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+  }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Custom Utilities */
+@layer utilities {
+  .border-hard {
+    border: 1px solid #000000;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  .border-hard-t {
+    border-top: 1px solid #000000;
+  }
+
+  .border-hard-b {
+    border-bottom: 1px solid #000000;
+  }
+
+  .border-hard-r {
+    border-right: 1px solid #000000;
+  }
+
+  .shadow-hard {
+    box-shadow: 4px 4px 0px 0px #000000;
+  }
+
+  .shadow-hard-sm {
+    box-shadow: 2px 2px 0px 0px #000000;
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1px black;
+    color: transparent;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    padding: 0;
+    /* Using a slightly darker grid color for visibility against white */
+    background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+      linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background-light);
+  color: #000000;
 }
